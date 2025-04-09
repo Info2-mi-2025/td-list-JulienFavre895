@@ -2,6 +2,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
+
+#define FILENAME_MAX 64
 
 // Ne pas modifier
 void init_file(){
@@ -52,43 +55,34 @@ typedef struct
 } List;
 
 // Fonctions de base
-void append(List* list, int value)
-{
+void append(List* list, int value){
 }
 
-void free_list(List* list)
-{
+void free_list(List* list){
 }
 
-void print_list(const List* list)
-{
+void print_list(const List* list){
 }
 
-void reverse_list(List* list)
-{
+void reverse_list(List* list){
 }
 
-int sum_list(const List* list)
-{
+int sum_list(const List* list){
     return 0;
 }
 
-int min_list(const List* list)
-{
+int min_list(const List* list){
     return 0;
 }
 
-int max_list(const List* list)
-{
+int max_list(const List* list){
     return 0;
 }
 
-void filter_list(List* list, int threshold)
-{
+void filter_list(List* list, int threshold){
 }
 
-void help()
-{
+void help(){
     printf("Utilisation : ./app <fichier> [options]\n\n");
     printf("Options disponibles :\n");
     printf("  --reverse         Inverse l'ordre des éléments\n");
@@ -102,8 +96,7 @@ void help()
 }
 
 // Lecture fichier
-bool read_file(const char* filename, List* list)
-{
+bool read_file(const char* filename, List* list){
     FILE* f = fopen(filename, "r");
     if (!f) return false;
     int value;
@@ -114,8 +107,7 @@ bool read_file(const char* filename, List* list)
     return true;
 }
 
-bool add_to_file(const char* filename, int value)
-{
+bool add_to_file(const char* filename, int value){
     FILE* f = fopen(filename, "a");
     if (!f) return false;
     fprintf(f, "%d\n", value);
@@ -123,13 +115,76 @@ bool add_to_file(const char* filename, int value)
     return true;
 }
 
-int main(int argc, char* argv[])
-{
+int main(int argc, char* argv[]){
     // Ne pas modifier
     init_file();
     // ---------------
 
-    if(argc < 2) return 1;
+    if (argc < 2){
+        printf("Il manque des arguments !!!\n");
+        exit(1);
+    }
     
+    bool reverse = false;
+    bool sum = false;
+    bool filter = false;
+    bool add = false;
+    int add_value = 0;
+    int filtervalue = 0;
+    bool max = false;
+    bool min = false;
+    char* filename[FILENAME_MAX]={0};
+    for (int i = 1; i < argc; i++){
+        if (strcmp(argv[i], "--help") == 0){
+            printf("Utilisation : ./app <fichier> [options]\n\n");
+            printf("Options disponibles :\n");
+            printf("  --reverse         Inverse l'ordre des éléments\n");
+            printf("  --sum             Affiche la somme des éléments\n");
+            printf("  --filter<val>    Filtre les éléments >= val\n");
+            printf("  --add<val>       Ajoute une valeur à la fin du fichier\n");
+            printf("  --help            Affiche ce message d'aide\n");
+            printf("  --version, -v     Affiche la version du programme\n");
+            return 0;
+        }
+        if (strcmp(argv[i], "--reverse") == 0){
+            reverse = true;
+            printf("reverse\n");
+            continue;
+        }
+        if (strcmp(argv[i], "--sum") == 0){
+            sum = true;
+            continue;
+        }
+        if (sscanf(argv[i], "--filter%d", &filtervalue) == 1){
+            filter = true;
+            printf("filter value : %d\n", filtervalue);
+            continue;
+        }
+        if (sscanf(argv[i], "--add%d", &add_value) == 1){
+            add = true;
+            printf("added value : %d\n", add_value);
+            continue;
+        }
+        if ((strcmp(argv[i], "--version")==0) || (strcmp(argv[i], "-v")==0)){
+            printf("version 1.0\n");
+            continue;
+        }
+        if (strcmp(argv[i], "--min")==0){
+            min = true;
+            continue;
+        }
+        if (strcmp(argv[i], "--max")==0){
+            max = false;
+            continue;
+        }
+        else{
+            strcpy(filename, argv[i]);
+            printf("filename : %s\n", filename);
+            continue;
+        }
+    }
+    
+
+
     return 0;
 }

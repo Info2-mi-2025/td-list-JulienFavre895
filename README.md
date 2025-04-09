@@ -18,8 +18,8 @@ et applique différentes transformations ou actions selon les options passées e
 
 - `--reverse` : inverse l’ordre des éléments dans la liste.
 - `--sum` : calcule et affiche la somme des éléments.
-- `--filter <valeur>` : ne garde que les éléments supérieurs ou égaux à `<valeur>`.
-- `--add <valeur>` : ajoute la valeur donnée à la fin du fichier.
+- `--filter<valeur>` : ne garde que les éléments supérieurs ou égaux à `<valeur>`.
+- `--add<valeur>` : ajoute la valeur donnée à la fin du fichier.
 - `--help` : affiche un message d’aide et termine le programme.
 - `--version` ou `-v` : affiche le numéro de version du programme.
 - `--min` : affiche la valeur minimale de la liste.
@@ -61,7 +61,7 @@ Somme : 45
 
 ### 3. Commande :
 ```bash
-./app data.txt --filter 10
+./app data.txt --filter10
 ```
 ### Sortie :
 ```
@@ -70,7 +70,7 @@ Liste : 12 -> 19
 
 ### 4. Commande :
 ```bash
-./app data.txt --add 33
+./app data.txt --add33
 ```
 ### Sortie :
 ```
@@ -88,8 +88,8 @@ Utilisation : ./app <fichier> [options]
 Options disponibles :
   --reverse         Inverse l'ordre des éléments
   --sum             Affiche la somme des éléments
-  --filter <val>    Filtre les éléments >= val
-  --add <val>       Ajoute une valeur à la fin du fichier
+  --filter<val>    Filtre les éléments >= val
+  --add<val>       Ajoute une valeur à la fin du fichier
   --help            Affiche ce message d'aide
   --version, -v     Affiche la version du programme
 ```
