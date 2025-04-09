@@ -4,8 +4,7 @@
 #include <string.h>
 
 // Ne pas modifier
-void init_file()
-{
+void init_file(){
     // data.txt
     FILE* f = fopen("data.txt", "w");
     if (f)
